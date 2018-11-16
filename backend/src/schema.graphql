@@ -1,0 +1,15 @@
+# Contains Resolvers (Queries, Mutations)
+# Can't be empty
+# Each Query must have a Resolver
+
+""" Imports are non-standard in GraphQL, must use a comment """
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  createItem(title: String, description: String, price: Int, image: String, largeImage: String): Item!
+}
+
+type Query {
+  items: [Item]!
+}
+
