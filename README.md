@@ -16,6 +16,16 @@ cd backend/
 npm run dev
 ```
 
+## Contributing/Making Changes
+
+### Backend
+
+Whenever you edit `datamodel.prisma`, you'll have to deploy that Prisma data model up to the Prisma service. 
+
+```shell
+npm run deploy
+```
+
 ## Technologies
 
 

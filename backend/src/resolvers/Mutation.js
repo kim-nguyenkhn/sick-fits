@@ -1,3 +1,6 @@
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 // Mutations must match the Schema
 const Mutations = {
   async createItem(parent, args, ctx, info) {
@@ -48,6 +51,43 @@ const Mutations = {
 
     // 3. delete it
     return ctx.db.mutation.deleteItem({ where }, info);
+  },
+
+  /**
+   * signup() - Handles signup
+   */
+  async signup(parent, args, ctx, info) {
+    // lowercase everything
+    args.email = args.email.toLowerCase();
+
+    // use bcrypt to hash passwords
+    const password = await bcrypt.hash(args.password, 10);
+
+    // create the user in the database
+    const user = await ctx.db.mutation.createUser(
+      // createUser: the Prisma generated API
+      {
+        data: {
+          ...args,
+          password,
+          permissions: { set: ["USER"] }
+        }
+      },
+      info
+    );
+
+    // create the JWT token for them
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    // Set the JWT as a cookie on the response
+    ctx.response.cookie("token", token, {
+      // Disable JS from accessing cookies
+      httpOnly: true,
+      // 1 year cookie
+      maxAge: 1000 * 60 * 60 * 24 * 365
+    });
+
+    // FINALLY, return the user to the browser
+    return user;
   }
 };
 
