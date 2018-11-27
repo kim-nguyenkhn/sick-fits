@@ -2,7 +2,7 @@
 # Can't be empty
 # Each Query must have a Resolver
 
-""" Imports are non-standard in GraphQL, must use a comment """
+""" NOTE: Imports are NON-STANDARD in GraphQL, so we have to use a comment """
 # import * from './generated/prisma.graphql'
 
 type SuccessMessage {
@@ -16,6 +16,8 @@ type Mutation {
   signup(email: String!, password: String!, name: String!): User!
   login(email: String!, password: String!): User!
   logout: SuccessMessage
+  requestReset(email: String!): SuccessMessage
+  resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
 }
 
 type Query {
@@ -25,3 +27,9 @@ type Query {
   me: User
 }
 
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  permissions: [Permission!]!
+}
