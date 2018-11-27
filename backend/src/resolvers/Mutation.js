@@ -1,6 +1,18 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+/**
+ * setJwtToken(ctx, token) - utility function to set the Jwt to the cookies
+ */
+const setJwtToken = (ctx, token) => {
+  ctx.response.cookie("token", token, {
+    // Disable JS from accessing cookies
+    httpOnly: true,
+    // 1 year cookie
+    maxAge: 1000 * 60 * 60 * 24 * 365
+  });
+};
+
 // Mutations must match the Schema
 const Mutations = {
   async createItem(parent, args, ctx, info) {
@@ -105,16 +117,15 @@ const Mutations = {
     setJwtToken(ctx, token);
     // 5. Return the user
     return user;
-  }
-};
+  },
 
-const setJwtToken = (ctx, token) => {
-  ctx.response.cookie("token", token, {
-    // Disable JS from accessing cookies
-    httpOnly: true,
-    // 1 year cookie
-    maxAge: 1000 * 60 * 60 * 24 * 365
-  });
+  /**
+   * logout() - Handles signing out.
+   */
+  async logout(parent, args, ctx, info) {
+    ctx.response.clearCookie("token");
+    return { message: "Goodbye!" };
+  }
 };
 
 module.exports = Mutations;
