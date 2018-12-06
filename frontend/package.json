@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "test": "NODE_ENV=test jest --watch",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "next build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
   "license": "ISC",
@@ -38,7 +40,13 @@
     "waait": "^1.0.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^4.0.12",
+    "@storybook/addon-links": "^4.0.12",
+    "@storybook/addons": "^4.0.12",
+    "@storybook/react": "^4.0.12",
+    "apollo-storybook-react": "0.1.8",
     "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "casual": "^1.5.19",
     "enzyme-to-json": "^3.3.4",
