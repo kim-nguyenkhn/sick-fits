@@ -51,7 +51,7 @@ class Login extends Component {
               <fieldset disabled={loading} aria-busy={loading}>
                 <h2>Log into your account</h2>
                 <Error error={error} />
-                <label htmFor="email">
+                <label htmlFor="email">
                   Email
                   <input
                     type="email"
@@ -61,7 +61,7 @@ class Login extends Component {
                     onChange={this.saveToState}
                   />
                 </label>
-                <label htmFor="password">
+                <label htmlFor="password">
                   Password
                   <input
                     type="password"

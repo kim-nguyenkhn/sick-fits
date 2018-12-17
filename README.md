@@ -41,3 +41,7 @@ npm run deploy
 ### Backend
 - GraphQL Yoga (Express GraphQL Server)
 - Prisma (GraphQL DB Interface)
+
+### Miscellaneous
+- Cloudinary (CDN for image uploading and hosting)
+- Mailtrap (SMTP server to emulate sending/receiving emails) 

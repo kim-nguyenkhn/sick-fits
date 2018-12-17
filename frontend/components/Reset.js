@@ -69,7 +69,7 @@ class Reset extends Component {
               <fieldset disabled={loading} aria-busy={loading}>
                 <h2>Reset Your Password</h2>
                 <Error error={error} />
-                <label htmFor="password">
+                <label htmlFor="password">
                   Password
                   <input
                     type="password"
@@ -79,7 +79,7 @@ class Reset extends Component {
                     onChange={this.saveToState}
                   />
                 </label>
-                <label htmFor="confirmPassword">
+                <label htmlFor="confirmPassword">
                   Confirm Your Password
                   <input
                     type="password"

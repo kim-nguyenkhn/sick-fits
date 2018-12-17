@@ -42,7 +42,7 @@ class Login extends Component {
                 {!error && !loading && called && (
                   <p>Success! Check your email for a reset link.</p>
                 )}
-                <label htmFor="email">
+                <label htmlFor="email">
                   Email
                   <input
                     type="email"
